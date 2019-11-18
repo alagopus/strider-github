@@ -38,16 +38,16 @@
     "inline_icon": "github"
   },
   "devDependencies": {
-    "eslint": "^3.1.1",
+    "eslint": "^5.16.0",
     "expect.js": "~0.2.0",
-    "mocha": "~1.13.0",
-    "nock": "^2.10.0"
+    "mocha": "^5.2.0",
+    "nock": "^9.0.22"
   },
   "dependencies": {
     "async": "~0.2.9",
     "debug": "^2.6.9",
     "gravatar": "^1.0.6",
-    "lodash": "^4.17.5",
+    "lodash": "^4.17.15",
     "passport-github": "^1.1.0",
     "scmp": "0.0.2",
     "ssh-keypair": "^1.0.0",
