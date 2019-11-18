@@ -1,15 +1,16 @@
+'use strict';
 
-var expect = require('expect.js')
-  , lib = require('../lib/webhooks')
+var expect = require('expect.js');
+var lib = require('../lib/webhooks');
 
 describe('webhooks', function () {
   describe('commit hook', function () {
     describe('parsing', function () {
       it('should work', function () {
-        var fx = require('./sample_commit.json')
-          , config = lib.pushJob(fx)
+        var fx = require('./sample_commit.json');
+        var config = lib.pushJob(fx);
 
-        delete config.trigger.author.image
+        delete config.trigger.author.image;
 
         expect(config).to.eql({
           branch: 'master',
@@ -33,10 +34,10 @@ describe('webhooks', function () {
               plugin: 'github'
             }
           }
-        })
-      })
-    })
-  })
+        });
+      });
+    });
+  });
 
   describe('pull request hook', function () {
     describe('parsing', function () {
@@ -76,27 +77,27 @@ describe('webhooks', function () {
               plugin: 'github'
             }
           }
-        })
-      })
-    })
-  })
+        });
+      });
+    });
+  });
 
   describe('verifySignature', function () {
     // `X-Hub-Signature` request header value from a github test hook request
-    var goodSig = 'sha1=0a09a56a74e9e68928a35f712afaae72b010c11f'
-      , secret = 'testsecret123'
-      , body = 'payload=%7B%22zen%22%3A%22Avoid+administrative+distraction.%22%2C%22hook_id%22%3A1881347%7D'
+    var goodSig = 'sha1=0a09a56a74e9e68928a35f712afaae72b010c11f';
+    var secret = 'testsecret123';
+    var body = 'payload=%7B%22zen%22%3A%22Avoid+administrative+distraction.%22%2C%22hook_id%22%3A1881347%7D';
     it('should verify valid signature', function (done) {
-      var valid = lib.verifySignature(goodSig, secret, body)
-      expect(valid).to.be(true)
-      done()
-    })
+      var valid = lib.verifySignature(goodSig, secret, body);
+      expect(valid).to.be(true);
+      done();
+    });
     it('should not verify invalid signature', function (done) {
-      var badSig = goodSig.replace(/.{1}$/, 'a')
-      var valid = lib.verifySignature(badSig, secret, body)
-      expect(valid).to.be(false)
-      done()
-    })
-  })
+      var badSig = goodSig.replace(/.{1}$/, 'a');
+      var valid = lib.verifySignature(badSig, secret, body);
+      expect(valid).to.be(false);
+      done();
+    });
+  });
 
-})
+});
